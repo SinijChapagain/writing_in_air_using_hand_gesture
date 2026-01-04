@@ -49,7 +49,6 @@ def record_clip(base_filename: str, duration_sec: int = 12) -> str | None:
 
 
 if __name__ == "__main__":
-    # Example: record one gesture. Repeat manually or script batch collection.
     record_clip("pinch_note", duration_sec=12)
     #record_clip("clip_erase", duration_sec=12)
-    record_clip("clip_idle", duration_sec=12)
+    #record_clip("clip_idle", duration_sec=12)
