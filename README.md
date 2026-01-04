@@ -1,2 +1,2 @@
 # writing_in_air_using_hand_gesture
-This project addresses these challenges through the implementation of a contactless gesture recognition system that enables users to create and modify digital notes using natural hand movements.
+The development of intuitive human-computer interaction methods has become increasingly important as digital technologies permeate everyday life. Traditional input methods such as keyboards and touchscreens, while effective, present limitations in accessibility, hygiene, and ergonomic contexts. This project addresses these challenges through the implementation of a contactless gesture recognition system that enables users to create and modify digital notes using natural hand movements.
