@@ -35,8 +35,8 @@ gesture_note_taking/
 ### Installation
 ```bash
 # Clone the repository
-git clone https://github.com/sinijchapagain/gesture_note_taking.git
-cd gesture_note_taking
+git clone https://github.com/SinijChapagain/writing_in_air_using_hand_gesture.git
+cd writing_in_air_using_hand_gesture
 
 # Create and activate virtual environment (recommended)
 python -m venv venv
