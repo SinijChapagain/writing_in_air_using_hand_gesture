@@ -53,7 +53,7 @@ def extract_sequences(
     mask = (times >= start_sec) & (times <= end_sec)
     segment = landmarks[mask]
 
-    # CRITICAL FIX: Remove frames with missing landmarks (do NOT replace with 0.0)
+    #Remove frames with missing landmarks
     valid_mask = ~np.isnan(segment).any(axis=1)
     segment = segment[valid_mask]
 
@@ -95,13 +95,12 @@ if __name__ == "__main__":
     X = np.vstack(X_seq).astype(np.float32)
     y = np.array(y_seq)
 
-    # COMMENTED OUT: Per-sequence normalization (removes spatial information)
+    # Per-sequence normalization (removes spatial information)
     # if X.size > 0:
     #     X = (X - X.mean(axis=(1, 2), keepdims=True)) / (
     #         X.std(axis=(1, 2), keepdims=True) + 1e-8
     #     )
 
-    # ADDED: Per-feature normalization (preserves spatial relationships)
     if X.size > 0:
         feature_mean = X.mean(axis=(0, 1), keepdims=True)
         feature_std = X.std(axis=(0, 1), keepdims=True)
@@ -116,7 +115,6 @@ if __name__ == "__main__":
         count = mask.sum()
         mean_x = X[mask, :, 8].mean()  # index tip x-coordinate
         mean_y = X[mask, :, 9].mean()  # index tip y-coordinate
-        # Also show range for better spatial analysis
         idx_x = X[mask, :, 8]
         print(f"[DIAG] '{cls}': {count} samples | index.x range: ({idx_x.min():.3f}, {idx_x.max():.3f}) | mean: {mean_x:.3f}")
 
