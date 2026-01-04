@@ -1,7 +1,7 @@
 # Gesture-Based Note-Taking System
 The development of intuitive human-computer interaction methods has become increasingly important as digital technologies permeate everyday life. Traditional input methods such as keyboards and touchscreens, while effective, present limitations in accessibility, hygiene, and ergonomic contexts. This project addresses these challenges through the implementation of a contactless gesture recognition system that enables users to create and modify digital notes using natural hand movements.
 
-A contactless interface for drawing and erasing digital notes using hand gestures — no keyboard, no mouse, just natural hand movements.
+A contactless interface for drawing and erasing digital notes using hand gestures: no keyboard, no mouse, just natural hand movements.
 
 [Demo: Pinch to draw, open palm to erase] 
 *(Example: Pinch: draw blue line | Open palm: erase with red circle)*
