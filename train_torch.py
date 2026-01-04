@@ -40,13 +40,13 @@ def main():
     print(f"[INFO] Loaded X={X.shape}, y={y_raw.shape}")
     print(f"[INFO] Unique classes: {np.unique(y_raw)}")
 
-    # Diagnostic: check if gestures are separable
+    # checking if gestures are separable
     for cls in np.unique(y_raw):
         mask = (y_raw == cls)
         mean_x = X[mask, :, 8].mean()  # x-coord of index tip (lm 8)
         print(f"[DIAG] {cls}: mean index.x = {mean_x:.3f}")
 
-    # CRITICAL FIX: Use balanced sampling instead of just class weights
+    # Using balanced sampling instead of just class weights
     le = LabelEncoder()
     le.fit(['erase', 'note'])  # Enforce 0=erase, 1=note
     y_enc = le.transform(y_raw)
@@ -54,7 +54,7 @@ def main():
     class_names = le.classes_.tolist()
     print(f"[INFO] Label mapping: {{0: '{class_names[0]}', 1: '{class_names[1]}'}}")
 
-    # CRITICAL FIX: Use stratified sampling with balanced class distribution
+    # Using stratified sampling with balanced class distribution
     from sklearn.utils import resample
     
     # Separate classes
@@ -85,11 +85,10 @@ def main():
     X_train = torch.tensor(X_train, dtype=torch.float32)
     X_val = torch.tensor(X_val, dtype=torch.float32)
 
-    # CRITICAL FIX: Remove class weights (use balanced data instead)
-    criterion = nn.CrossEntropyLoss()  # No class weights needed with balanced data
+    criterion = nn.CrossEntropyLoss()  
     model = GestureNet(num_classes=len(class_names))
     
-    # CRITICAL FIX: Lower learning rate and use SGD with momentum
+    #Lower learning rate and use SGD with momentum
     optimizer = optim.SGD(model.parameters(), lr=0.001, momentum=0.9, weight_decay=1e-4)
 
     device = torch.device("cpu")
@@ -101,7 +100,7 @@ def main():
     history = {"train_loss": [], "val_loss": [], "val_acc": []}
     best_val_acc = 0.0
     patience_counter = 0
-    patience = 15  # Increased patience
+    patience = 15  
 
     print("\n" + "="*55)
     print(f"{'Epoch':<6} {'Train Loss':<10} {'Val Loss':<10} {'Val Acc':<8}")
@@ -113,7 +112,7 @@ def main():
         outputs = model(X_train)
         loss = criterion(outputs, y_train)
         loss.backward()
-        # CRITICAL FIX: Remove gradient clipping (was preventing learning)
+        # Remove gradient clipping as it was preventing learning
         optimizer.step()
 
         model.eval()
